@@ -1,0 +1,57 @@
+[package]
+name = "life-timeline"
+version = "0.2.14"
+description = "life-timeline local-first Windows and Android application"
+authors = ["life-timeline"]
+edition = "2021"
+# @tauri-apps/plugin-dialog 2.8.x (resolved by the frontend lockfile) requires Rust >= 1.90.
+rust-version = "1.90"
+
+[lib]
+name = "life_timeline_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.0", features = [] }
+
+[dependencies]
+tauri = { version = "2.0", features = ["protocol-asset"] }
+tauri-plugin-dialog = "2.0"
+semver = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+rusqlite = { version = "0.32", features = ["bundled"] }
+chrono = { version = "0.4", features = ["clock", "serde"] }
+sha2 = "0.10"
+uuid = { version = "1", features = ["v4", "serde"] }
+mime_guess = "2"
+zip = { version = "2", default-features = false, features = ["deflate", "time"] }
+reqwest = { version = "0.13.5", default-features = false, features = ["blocking", "json", "rustls-no-provider", "system-proxy"] }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+url = "2.5.8"
+zeroize = "1"
+pulldown-cmark = "0.13"
+scraper = "0.24"
+base64 = "0.22"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "webp", "gif", "bmp", "tiff"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61.2", features = ["Win32_Foundation", "Win32_Security_Cryptography", "Win32_Storage_FileSystem"] }
+
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin-updater = { version = "=2.13.1", default-features = false, features = ["rustls-tls", "system-proxy"] }
+
+[target.'cfg(target_os = "android")'.dependencies]
+jni = "0.22"
+ndk-context = "0.1"
+rustls-platform-verifier = "0.7"
+tauri-plugin-fs = "2.6"
+tauri-plugin-life-mobile = { path = "mobile-bridge" }
+
+[dev-dependencies]
+tempfile = "3"
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]

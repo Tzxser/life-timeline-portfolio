@@ -1,0 +1,6 @@
+packages:
+  - '.'
+allowBuilds:
+  tesseract.js: false
+overrides:
+  hono: 4.12.25

@@ -1,0 +1,2 @@
+-keep class com.tzxser.lifetimeline.mobile.** { *; }
+-keep,includedescriptorclasses class org.rustls.platformverifier.** { *; }

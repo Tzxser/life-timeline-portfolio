@@ -1,0 +1,70 @@
+/* A timeline-only skin. No diary, settings, header or global theme tokens change. */
+.lt-seasonal-surface {
+  --paper: var(--background);
+  --spring: #829867; --summer: #648a76; --autumn: #b78e61; --winter: #8d9da4;
+  --spring-wash: #e0e8d4; --summer-wash: #d6e5dc; --autumn-wash: #eee4d1; --winter-wash: #e1e6e8;
+  --snow: #fffefa; --snow-edge: #aeb8b9; --fruit: #ad7956; --flower: #bf99a0;
+}
+.dark .lt-seasonal-surface {
+  --spring: #9caf83; --summer: #84a28c; --autumn: #c09d76; --winter: #9aabb3;
+  --spring-wash: #333a28; --summer-wash: #293c31; --autumn-wash: #443829; --winter-wash: #30383c;
+  --snow: #d7deda; --snow-edge: #839397; --fruit: #cba17a; --flower: #c1a0ab;
+}
+.lt-seasonal-landscape { position: absolute; top: 0; pointer-events: none; fill: none; opacity: calc((1 - var(--tl-p, 0)) * min(1, var(--lt-season-intensity, 1))); stroke-linecap: round; stroke-linejoin: round; }
+.lt-night-sky { position: absolute; inset: 0 0 auto; z-index: 0; height: 288px; overflow: hidden; pointer-events: none; opacity: 0; transition: opacity 280ms ease; }
+.lt-seasonal-surface > .lt-timeline-scroll { position: relative; z-index: 1; }
+.lt-night-sky[data-night-sky='true'] { opacity: calc(1 - var(--tl-p, 0)); }
+.lt-night-stars { position: absolute; inset: 0; color: color-mix(in oklab, var(--foreground) 70%, var(--primary)); }
+.lt-night-star { position: absolute; display: block; border-radius: 50%; background: currentColor; box-shadow: 0 0 2px color-mix(in oklab, currentColor 56%, transparent); }
+.lt-night-meteor { position: absolute; top: 28px; left: 22%; display: block; width: 42px; height: 1px; border-radius: 999px; background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--foreground) 66%, var(--primary)), transparent); opacity: 0; transform: rotate(22deg); transform-origin: left center; }
+.lt-night-sky[data-meteor-run]:not([data-meteor-run='0']) .lt-night-meteor { animation: lt-night-meteor-pass 860ms cubic-bezier(.22,.61,.36,1) both; }
+@keyframes lt-night-meteor-pass {
+  0% { opacity: 0; transform: translate3d(-34px, -8px, 0) rotate(22deg); }
+  12% { opacity: .72; }
+  74% { opacity: .52; }
+  100% { opacity: 0; transform: translate3d(260px, 112px, 0) rotate(22deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lt-night-sky { transition: none; }
+  .lt-night-meteor { display: none; animation: none !important; }
+}
+.lt-seasonal-tree { fill: none; stroke-linecap: round; stroke-linejoin: round; overflow: visible; opacity: clamp(.45, .85 * var(--lt-season-intensity, 1), 1); }
+.lt-seasonal-tree .tree-trunk { fill: none; stroke: currentColor; stroke-width: 1.05; }
+.lt-seasonal-tree .tree-branch { fill: none; stroke: currentColor; stroke-width: .8; }
+.lt-seasonal-tree .tree-leaf { fill: currentColor; fill-opacity: .11; stroke: currentColor; stroke-width: .65; }
+.lt-seasonal-tree .tree-leaf-vein { fill: none; stroke: currentColor; stroke-width: .35; opacity: .4; }
+.lt-seasonal-tree .tree-canopy { fill: currentColor; fill-opacity: .055; stroke: currentColor; stroke-width: .65; stroke-opacity: .65; }
+.lt-seasonal-surface .tree-fruit { fill: var(--fruit); fill-opacity: .7; stroke: var(--fruit); stroke-width: .6; }
+.lt-seasonal-tree .tree-blossom { fill: var(--flower); fill-opacity: .7; stroke: var(--flower); stroke-width: .45; }
+.lt-seasonal-tree .snow-under { fill: none; stroke: var(--snow-edge); stroke-width: calc(var(--snow-weight, 1.9px) + 1px); opacity: .6; }
+.lt-seasonal-tree .snow-top { fill: none; stroke: var(--snow); stroke-width: var(--snow-weight, 1.9px); }
+.lt-seasonal-tree .snow-dot { fill: var(--winter); opacity: .45; }
+.lt-seasonal-tree[data-fuzzy='true'] .tree-trunk, .lt-seasonal-tree[data-fuzzy='true'] .tree-branch { stroke-dasharray: 2 3; opacity: .7; }
+.lt-seasonal-surface[data-timeline-tint='true'] .lt-seasonal-tree { color: var(--tlc-node) !important; }
+.lt-seasonal-surface .scene-clearing { fill: var(--background); opacity: .75; }
+.lt-seasonal-surface .ground-texture { opacity: .68; }
+.lt-seasonal-surface .snow-drift { fill: var(--snow); fill-opacity: .65; stroke: var(--snow-edge); stroke-opacity: .4; stroke-width: .6; }
+.lt-timeline-control-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 0 24px; }
+.lt-timeline-style { display: flex; flex-shrink: 0; gap: 2px; }
+.lt-timeline-style button { font-size: 11px; color: var(--muted-foreground); padding: 5px 8px; border-radius: 4px; cursor: pointer; }
+.lt-timeline-style button[aria-pressed='true'] { background: var(--muted); color: var(--foreground); }
+.lt-timeline-style button:focus-visible, .lt-timeline-journey button:focus-visible { outline: 1px solid var(--primary); outline-offset: 3px; }
+.lt-timeline-control-row > div:last-child { flex-shrink: 0; }
+.lt-timeline-journey { display: flex; align-items: center; flex: 1; gap: 12px; min-width: 48px; height: 38px; }
+.lt-timeline-journey > button { display: grid; place-items: center; border: 1px solid var(--border); border-radius: 50%; width: 26px; height: 26px; flex-shrink: 0; color: var(--muted-foreground); cursor: pointer; }
+.lt-timeline-journey > button:disabled { opacity: .3; cursor: default; }
+.lt-timeline-journey > button svg { width: 13px; height: 13px; }
+.lt-journey-track-wrap { position: relative; flex: 1; min-width: 0; padding-top: 9px; }
+.lt-journey-track { height: 5px; position: relative; border-radius: 6px; }
+.lt-journey-window { position: absolute; height: 10px; top: -2.5px; border: 1px solid var(--muted-foreground); border-radius: 9px; background: color-mix(in srgb, var(--background) 25%, transparent); pointer-events: none; min-width: 6px; }
+.lt-journey-track-wrap input { position: absolute; inset: -3px 0 auto; width: 100%; height: 29px; margin: 0; opacity: 0; cursor: ew-resize; }
+.lt-journey-track-wrap:focus-within .lt-journey-track { outline: 1px solid var(--primary); outline-offset: 5px; }
+.lt-journey-years { display: flex; justify-content: space-between; font: 8px var(--font-mono); color: var(--muted-foreground); opacity: .7; margin-top: 5px; }
+@media(max-width: 700px) {
+  .lt-timeline-control-row { padding: 0 14px; gap: 9px; }
+  .lt-timeline-journey > button { display: none; }
+  .lt-timeline-style button { padding: 5px 5px; font-size: 10px; }
+  .lt-timeline-control-row > div:last-child { gap: 0; padding-inline: 4px; }
+  .lt-timeline-control-row > div:last-child > button[aria-label] { width: 24px; }
+  .lt-timeline-control-row > div:last-child > span:first-of-type { width: 34px; }
+}

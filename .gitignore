@@ -1,0 +1,66 @@
+# v0 sandbox internal files
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+.snowflake/
+.v0-trash/
+.vercel/
+
+# Environment variables
+.env*.local
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Common ignores
+node_modules
+.next/
+.DS_Store
+
+# Generated frontend and desktop outputs
+out/
+src-tauri/target/
+*.tsbuildinfo
+
+# Audit/task-package copies kept outside release artifacts
+_audit/
+.task-package/
+artifacts/
+
+# Local logs and test data
+logs/
+test-data/
+
+# Personal runtime data and protected API configuration
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.db
+*.db-wal
+*.db-shm
+api-profiles.json
+*-api-profiles.encrypted.json
+life-timeline-private/
+
+# Generated Python bytecode from release tools
+__pycache__/
+*.pyc
+
+# Android local SDK settings, build outputs and signing secrets
+src-tauri/gen/android/.gradle/
+src-tauri/gen/android/.kotlin/
+src-tauri/gen/android/**/build/
+src-tauri/gen/android/local.properties
+src-tauri/gen/android/keystore.properties
+src-tauri/gen/android/.idea/
+src-tauri/gen/android/app/src/main/jniLibs/
+src-tauri/gen/android/app/src/main/assets/
+src-tauri/mobile-bridge/android/.gradle/
+src-tauri/mobile-bridge/android/.tauri/
+src-tauri/mobile-bridge/android/build/
+*.jks
+*.keystore
+
+# Recreated from pinned dependencies before dev/build; no runtime CDN requests.
+public/schedule-assets/

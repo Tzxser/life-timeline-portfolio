@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "life-timeline",
+        "dragDropEnabled": false
+      }
+    ]
+  },
+  "bundle": {
+    "icon": ["icons/icon-256.png"],
+    "createUpdaterArtifacts": false,
+    "android": {
+      "minSdkVersion": 24,
+      "versionCode": 20015
+    }
+  },
+  "plugins": {
+    "updater": null
+  }
+}

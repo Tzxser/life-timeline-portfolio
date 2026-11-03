@@ -1,0 +1,46 @@
+.lt-schedule-card { position: relative; clear: both; width: 100%; min-width: 0; margin: 1.5rem 0; padding: 1rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--background); font-family: var(--font-sans); }
+.lt-schedule-card-heading { display: flex; gap: .6rem; align-items: center; font-size: .9rem; }
+.lt-schedule-card-heading > span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.lt-schedule-card-heading > button { display: flex; align-items: center; justify-content: center; min-width: 40px; min-height: 40px; border-radius: .5rem; }
+.lt-schedule-card-heading > button:hover { background: var(--muted); }
+.lt-schedule-date { margin: .2rem 0 1rem !important; color: var(--muted-foreground); font-size: .75rem; }
+.lt-schedule-sheet { min-width: 0; width: 100%; font-size: .8rem; }
+.lt-schedule-cell-editor { scroll-margin-top: 6rem; scroll-margin-bottom: 1.25rem; }
+.lt-schedule-scroll { max-width: 100%; overflow: auto; overscroll-behavior-x: contain; border: 1px solid var(--border); border-radius: .5rem; }
+.lt-schedule-scroll table { width: 100%; border-collapse: collapse; text-align: left; }
+.lt-schedule-scroll th, .lt-schedule-scroll td { min-width: 6rem; max-width: 22rem; padding: .65rem .75rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); white-space: pre-wrap; overflow-wrap: anywhere; vertical-align: top; }
+.lt-schedule-scroll th { background: var(--muted); font-weight: 500; }
+.lt-schedule-scroll th input { width: 8rem; max-width: 100%; background: transparent; outline-offset: 3px; }
+.lt-schedule-scroll td button { width: 100%; min-height: 36px; text-align: left; white-space: pre-wrap; }
+.lt-schedule-scroll td[data-selected] { background: var(--muted); outline: 2px solid var(--ring); outline-offset: -2px; }
+.lt-schedule-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: .7rem 0; }
+.lt-schedule-actions button { min-height: 40px; }
+.lt-schedule-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
+.lt-schedule-fields label { display: flex; min-width: 0; flex-direction: column; gap: .4rem; font-size: .8rem; }
+.lt-schedule-warning { display: block; width: 100%; padding: .8rem; border-left: 3px solid var(--primary); background: var(--muted); color: var(--foreground); font-size: .8rem; line-height: 1.8; text-align: left; overflow-wrap: anywhere; }
+.lt-schedule-dialog { position: fixed; inset: 0; margin: auto; width: min(1100px, 94vw); max-width: 100vw; height: min(840px, 92dvh); max-height: 100dvh; border: 1px solid var(--border); border-radius: 1rem; padding: 0; background: var(--background); color: var(--foreground); overflow: auto; }
+.lt-schedule-dialog::backdrop { background: #0008; }
+.lt-schedule-dialog > header { display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 2; padding: .8rem 1.2rem; background: var(--background); border-bottom: 1px solid var(--border); }
+.lt-schedule-dialog > header button { display: grid; place-items: center; width: 44px; height: 44px; }
+.lt-schedule-dialog-body { padding: 1.3rem; }
+@media (min-width: 90rem) {
+  .lt-schedule-left, .lt-schedule-right { width: min(25rem, calc((100vw - 42rem) / 2 - 4rem)); font-size: .75rem; clear: none; }
+  .lt-schedule-left { float: left; margin-left: calc(-1 * (min(25rem, calc((100vw - 42rem) / 2 - 4rem)) + 2rem)); clear: left; }
+  .lt-schedule-right { float: right; margin-right: calc(-1 * (min(25rem, calc((100vw - 42rem) / 2 - 4rem)) + 2rem)); clear: right; }
+}
+@media (max-width: 600px) {
+  .lt-schedule-dialog { width: 100vw; height: 100dvh; border: 0; border-radius: 0; }
+  .lt-schedule-dialog-body { padding: 1rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom)); }
+  .lt-schedule-fields { grid-template-columns: minmax(0, 1fr); }
+  .lt-schedule-card { padding: .75rem; }
+  .lt-schedule-actions button { min-height: 44px; }
+  .lt-schedule-scroll td button { min-height: 44px; }
+  .lt-schedule-card[data-view="list"] .lt-schedule-scroll table,
+  .lt-schedule-card[data-view="list"] .lt-schedule-scroll tbody,
+  .lt-schedule-card[data-view="list"] .lt-schedule-scroll tr,
+  .lt-schedule-card[data-view="list"] .lt-schedule-scroll td { display: block; width: 100%; max-width: none; }
+  .lt-schedule-card[data-view="list"] .lt-schedule-scroll thead { display: none; }
+  .lt-schedule-card[data-view="list"] .lt-schedule-scroll tr { padding: .5rem 0; border-bottom: 1px solid var(--border); }
+  .lt-schedule-card[data-view="list"] .lt-schedule-scroll td { padding: .2rem .6rem; border: 0; }
+  .lt-schedule-card[data-view="list"] .lt-schedule-scroll td::before { content: attr(data-label) ' · '; color: var(--muted-foreground); font-size: .7rem; }
+}

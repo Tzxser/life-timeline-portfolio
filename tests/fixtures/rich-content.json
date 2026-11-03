@@ -1,0 +1,53 @@
+{
+  "type": "doc",
+  "content": [
+    {
+      "type": "paragraph",
+      "content": [
+        { "type": "text", "text": "海边散步：" },
+        {
+          "type": "text",
+          "text": "把照片放在这里",
+          "marks": [
+            { "type": "imageLink", "attrs": { "imageId": "att-image-1" } }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "lifeImage",
+      "attrs": {
+        "attachmentId": "att-image-1",
+        "name": "海边.jpg",
+        "caption": "退潮后的海边",
+        "layout": "wrap-right",
+        "width": 42,
+        "naturalWidth": 1600,
+        "naturalHeight": 1000
+      }
+    },
+    {
+      "type": "paragraph",
+      "content": [
+        { "type": "text", "text": "录下了潮声。" }
+      ]
+    },
+    {
+      "type": "lifeAttachment",
+      "attrs": {
+        "attachmentId": "att-audio-1",
+        "name": "潮声.wav",
+        "mimeType": "audio/wav",
+        "byteSize": 128
+      }
+    },
+    {
+      "type": "lifeImage",
+      "attrs": {
+        "attachmentId": "att-image-1",
+        "name": "海边-重复引用.jpg",
+        "caption": "同一个附件再次出现"
+      }
+    }
+  ]
+}
